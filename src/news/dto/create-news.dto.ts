@@ -17,6 +17,11 @@ export class CreateNewsDto {
   @IsNotEmpty()
   content: string;
 
+  @ApiProperty({ description: 'News URL', required: false })
+  @IsString()
+  @IsOptional()
+  url?: string;
+
   @ApiProperty({ description: 'Published date' })
   @IsDate()
   @IsNotEmpty()

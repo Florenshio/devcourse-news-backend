@@ -16,6 +16,9 @@ export class News {
   @Column({ name: 'content', type: 'text', nullable: false })
   content: string;
 
+  @Column({ name: 'url', type: 'varchar', length: 512, nullable: true })
+  url: string;
+
   @Column({ name: 'published_at', type: 'datetime', nullable: false })
   publishedAt: Date;
 
