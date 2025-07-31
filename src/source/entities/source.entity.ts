@@ -2,7 +2,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { News } from '../../news/entities/news.entity';
 import { SummarizedNews } from '../../summarized-news/entities/summarized-news.entity';
 
-@Entity()
+@Entity('source')
 export class Source {
   @PrimaryGeneratedColumn({ name: 'source_id' })
   sourceId: number;

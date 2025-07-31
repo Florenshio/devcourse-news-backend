@@ -2,7 +2,7 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, Prim
 import { Source } from '../../source/entities/source.entity';
 import { SummarizedNews } from '../../summarized-news/entities/summarized-news.entity';
 
-@Entity()
+@Entity('news')
 export class News {
   @PrimaryGeneratedColumn({ name: 'news_id' })
   newsId: number;
