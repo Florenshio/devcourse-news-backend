@@ -42,7 +42,8 @@ export class NewsSummarizerService {
         sourceId: news.sourceId,
       };
       
-      const savedSummarizedNews = await this.summarizedNewsService.create(summarizedNewsDto);
+      // create 대신 updateByNewsId를 사용하여 중복 키 오류 방지
+      const savedSummarizedNews = await this.summarizedNewsService.updateByNewsId(summarizedNewsDto);
       this.logger.log(`Successfully summarized and saved news with ID: ${newsId}`);
       
       return savedSummarizedNews;
@@ -88,7 +89,8 @@ export class NewsSummarizerService {
       
       // 병렬로 저장
       const savedSummarizedNews = await Promise.all(
-        summarizedNewsDtos.map(dto => this.summarizedNewsService.create(dto))
+        // summarizedNewsDtos.map(dto => this.summarizedNewsService.create(dto)
+        summarizedNewsDtos.map(dto => this.summarizedNewsService.updateByNewsId(dto))
       );
       
       this.logger.log(`Successfully summarized and saved ${savedSummarizedNews.length} news articles`);

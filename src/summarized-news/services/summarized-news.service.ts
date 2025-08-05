@@ -78,4 +78,26 @@ export class SummarizedNewsService {
     const today = new Date();
     return this.findByDate(today);
   }
+
+  /**
+   * 뉴스 ID로 요약 내용을 업데이트하거나 없으면 새로 생성
+   * @param createSummarizedNewsDto 업데이트할 요약 뉴스 데이터
+   * @returns 업데이트되거나 생성된 요약 뉴스 객체
+   */
+  async updateByNewsId(createSummarizedNewsDto: CreateSummarizedNewsDto): Promise<SummarizedNews> {
+    // 해당 newsId로 요약 뉴스가 이미 존재하는지 확인
+    const existingSummarizedNews = await this.summarizedNewsRepository.findOne({
+      where: { newsId: createSummarizedNewsDto.newsId }
+    });
+    
+    if (existingSummarizedNews) {
+      // 이미 존재하면 업데이트
+      existingSummarizedNews.summarizedContent = createSummarizedNewsDto.summarizedContent;
+      existingSummarizedNews.updatedAt = new Date();
+      return this.summarizedNewsRepository.save(existingSummarizedNews);
+    } else {
+      // 존재하지 않으면 새로 생성
+      return this.create(createSummarizedNewsDto);
+    }
+  }
 }

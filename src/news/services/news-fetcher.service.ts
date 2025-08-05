@@ -44,7 +44,7 @@ export class NewsFetcherService {
     this.logger.log('Starting to fetch headlines');
     
     try {
-      await this.fetchCategoryHeadlines('business');
+      // await this.fetchCategoryHeadlines('business');
       await this.fetchCategoryHeadlines('technology');
       
       this.logger.log('Finished fetching headlines');

@@ -6,15 +6,17 @@ import { NewsModule } from './news/news.module';
 import { SourceModule } from './source/source.module';
 import { SummarizedNewsModule } from './summarized-news/summarized-news.module';
 import { SchedulerModule } from './scheduler/scheduler.module';
-import { TypeOrmConfig } from '../model';
+import { TypeOrmConfig } from './model';
+import * as path from 'path';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: path.resolve(process.cwd(), '.env'),
     }),
     TypeOrmConfig,
-    NewsModule,
+    NewsModule, 
     SourceModule,
     SummarizedNewsModule,
     SchedulerModule,
@@ -23,3 +25,4 @@ import { TypeOrmConfig } from '../model';
   providers: [AppService],
 })
 export class AppModule {}
+console.log(process.env.DATABASE_HOST);

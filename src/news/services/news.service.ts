@@ -127,7 +127,8 @@ export class NewsService {
     
     return this.newsRepository.find({
       where: {
-        publishedAt: Between(startDate, endDate),
+        // publishedAt: Between(startDate, endDate),
+        updatedAt: Between(startDate, endDate),
       },
       relations: ['source'],
     });

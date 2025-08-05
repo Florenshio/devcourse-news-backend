@@ -13,7 +13,7 @@ export class News {
   @Column({ name: 'author', nullable: true, type: 'varchar', length: 255 })
   author: string;
 
-  @Column({ name: 'content', type: 'text', nullable: false })
+  @Column({ name: 'content', type: 'mediumtext', nullable: false })
   content: string;
 
   @Column({ name: 'url', type: 'varchar', length: 512, nullable: true })
